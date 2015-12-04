@@ -1,0 +1,67 @@
+
+
+    'Take-Home Pay Calculotor 
+    'Programmer:     Pablo Castillo
+    'Date:           Nov. 10, 2015
+    'Purpose:        This app will calculate a profit for my products.
+
+    Private Sub inventoryProfitCalculator()
+        Dim itemOnHand, unitCost, margin, totalCost, sellingPrice, totalValue, totalProfit As Double
+
+        'Items = NumUD1.Value 
+        itemOnHand = itemsOnHand.Value
+
+        margin = (marginProfit.Value / 100)
+        unitCost = unitCostValue.Value
+
+
+        'Calculate Total Cost 
+        totalCost = itemsOnHand.Value * unitCostValue.Value
+        lblTotalCostValue.Text = Format(totalCost, "Currency")
+
+        'Calculate Selling Price 
+
+        sellingPrice = unitCostValue.Value / (1 - margin)
+
+        lblSellingPriceValue.Text = Format(sellingPrice, "Currency")
+
+        'Calculate Total Value
+        totalValue = sellingPrice * itemsOnHand.Value
+        txtBoxTotalValue.Text = Format(totalValue, "Currency")
+
+        'Calculate Total Profit 
+        totalProfit = totalValue * totalCost
+        txtBoxTotalProfit.Text = Format(totalProfit, "Currency")
+
+        'SP - $54.50 = 42% of SP
+
+        '1SP - $54.50 = 0.42SP
+
+        '1SP - 0.42SP = $54.50
+
+        '0.58SP = $54.50
+
+        '0.58SP / 0.50 = $54.50 / 
+
+        'SP = $93.97
+
+    End Sub
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        marginProfit.Value = 30
+        margin = marginProfit.Value
+        lblMarginValue.Text = (margin & "%")
+    End Sub
+
+    Private Sub marginProfit_Scroll(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles marginProfit.Scroll
+        lblMarginValue.Text = marginProfit.Value & "%"
+    End Sub
+
+    Private Sub unitCostValue_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unitCostValue.ValueChanged
+        inventoryProfitCalculator()
+    End Sub
+
+    Private Sub itemsOnHand_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles itemsOnHand.ValueChanged
+        inventoryProfitCalculator()
+    End Sub
+End Class
