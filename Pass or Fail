@@ -1,0 +1,57 @@
+ Dim userNumber As Integer
+    Dim numberCounter As Integer = 0
+
+
+
+    Private Sub btnEnter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEnter.Click
+
+        numberCounter = numberCounter + 1
+
+        labelWrongNumberCount.Text = numberCounter
+
+        userNumber = Val(usrInput.Text)
+
+        If userNumber = 77 Then
+
+            'labelResult.Text = "You're the Lucky Winner"
+            'labelResult.BackColor = Color.Green
+            labelResultWinner.Visible = True
+
+        ElseIf userNumber > 0 And userNumber < 77 Then
+
+            labelResultLoser.Text = "Dude, you are way to low."
+            labelResultLoser.Visible = True
+
+        ElseIf userNumber > 77 And userNumber < 101 Then
+
+            labelResultLoser.Text = "Your guess is to High, Try again"
+            labelResultLoser.Visible = True
+
+        Else
+            labelResultLoser.Text = "Your guess is out of the scope of the game."
+            labelResultLoser.Visible = True
+
+        End If
+    End Sub
+
+    Private Sub btnClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClear.Click
+
+        If userNumber = 77 Then
+            labelWrongNumberCount.Text = 0
+            userNumber = 0
+        End If
+
+        usrInput.Text = ""
+        labelResultWinner.Visible = False
+        labelResultLoser.Visible = False
+
+    End Sub
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        usrInput.Text = ""
+        labelResultWinner.Visible = False
+        labelResultLoser.Visible = False
+
+    End Sub
+End Class
