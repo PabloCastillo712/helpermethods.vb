@@ -1,0 +1,61 @@
+
+    Dim globalMonths As Double = 60.0
+    Dim numberOfPayments As Double
+    Dim interestRateNumber As Decimal
+    Const maxLoanAmountAllowed As Integer = 50000
+ Private Sub twoYears_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles twoYears.CheckedChanged
+        numberOfPayments = 36
+    End Sub
+
+    Private Sub sevenYears_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles sevenYears.CheckedChanged
+        numberOfPayments = 60
+    End Sub
+
+    Private Sub btnReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReset.Click
+        nudLoanAmount.Value = 10000.0
+        interestrate.Value = 2.0
+        fiveYears.Checked = True
+        txtMonthlyPayment.Text = "0.00"
+
+  
+
+    End Sub
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'Set the maximum value of the loan amount NumericUpDown control 
+        nudLoanAmount.Maximum = maxLoanAmountAllowed
+
+    End Sub
+
+
+
+    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCreditRating.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub btnCompute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCompute.Click
+        Dim dblRate, dblMonths, dblPayment As Double
+        Dim dblLoanAmount As Double, strPayment As String
+        Dim dblAdjustedRate As Double, strErrorMessage As String
+
+        dblLoanAmount = Convert.ToDouble(nudLoanAmount.Value)
+
+        dblRate = (Convert.ToDouble(interestrate.Value) / 100) / 12
+
+        If cmbCreditRating.Text = " " Then
+            MessageBox.Show("Please enter the customer's credit rating in the credit rating box.", "No Credit Rating")
+            cmbCreditRating.Focus()
+            Exit Sub
+        End If
+
+
+
+        dblPayment = Pmt(dblRate, globalMonths, -dblLoanAmount)
+        strPayment = Format$(dblPayment, "Currency")
+        txtMonthlyPayment.Text = strPayment
+
+
+
+    End Sub
+End Class
+
