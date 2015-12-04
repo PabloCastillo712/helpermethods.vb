@@ -1,0 +1,46 @@
+   Dim userSales As Integer
+    Dim userComm As Integer
+
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+
+   
+    Private Sub ButtonReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonReset.Click
+        userSales = 0
+        userComm = 0
+        textBoxUserSales.Text = "Enter a $ amount"
+        labelOutput.Text = "User Commission Report"
+
+
+    End Sub
+
+
+    Private Sub buttonEnter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonEnter.Click
+
+        If textBoxUserSales.Text > 40000 Then
+            userSales = textBoxUserSales.Text
+            userComm = userSales * 0.14
+            labelOutput.Text = "Based on your sales of $" & userSales & ",  your commission is $" & userComm
+
+        ElseIf textBoxUserSales.Text <= 40000 And textBoxUserSales.Text > 25000 Then
+            userSales = textBoxUserSales.Text
+            userComm = userSales * 0.09
+            labelOutput.Text = "Based on your sales of $" & userSales & ",  your commission is $" & userComm
+
+        ElseIf textBoxUserSales.Text <= 25000 And textBoxUserSales.Text > 10000 Then
+            userSales = textBoxUserSales.Text
+            userComm = userSales * 0.07
+            labelOutput.Text = "Based on your sales of $" & userSales & ",  your commission is $" & userComm
+
+        Else
+            labelOutput.Text = "Based on your sales of $" & userSales & ", your commission is $0.00 and You're Fired!"
+
+        End If
+
+    End Sub
+
+    Private Sub textBoxUserSales_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxUserSales.TextChanged
+
+    End Sub
+End Class
